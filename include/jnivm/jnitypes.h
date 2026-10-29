@@ -15,18 +15,17 @@ class Class;
 class ENV;
 class VM;
 
+namespace detail {
+// defined in src/jnivm/env.cpp, where ENV is a complete type
+void PushLocalRef(ENV *env, std::shared_ptr<Object> &&obj);
+} // namespace detail
+
 template <class T, class orgtype = T> struct JNITypes;
 
 template <class T, class = void> struct hasname : std::false_type {};
 
 template <class T>
 struct hasname<T, void_t<decltype(T::getClassName())>> : std::true_type {};
-
-namespace detail {
-template <class> struct env_of {
-  using type = ENV;
-};
-} // namespace detail
 
 template <class T, class B = jobject, class orgtype = std::shared_ptr<T>>
 struct JNITypesObjectBase {
@@ -289,8 +288,7 @@ B jnivm::JNITypesObjectBase<T, B, orgtype>::ToJNIType(
       obj->clazz = JNITypesObjectBase<Y, B>::GetClass(env);
     }
     auto ref = (B)obj.get();
-    typename jnivm::detail::env_of<T>::type *e = env;
-    e->localframe.front().push_back(std::move(obj));
+    jnivm::detail::PushLocalRef(env, std::move(obj));
     // Return jni Reference
     return ref;
   } else {
