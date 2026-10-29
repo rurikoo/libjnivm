@@ -349,7 +349,7 @@ template<class X, class ...jnitypes> struct JNINativeInterfaceCompose<X, jnitype
 };
 template<> struct JNINativeInterfaceCompose<> {
 	using Type = std::tuple<>;
-	template<class Y> using index = std::integral_constant<size_t, 0>;	
+	template<class Y> using index = std::integral_constant<size_t, 0>;
 };
 
 template<bool ReturnNull, class ...jnitypes> struct InterfaceFactory {
@@ -478,8 +478,8 @@ jnivm::VM::VM(bool skipInit, bool ReturnNull) : ninterface(ReturnNull ? GetNativ
 				}
 #else
 				if(penv) {
-					std::lock_guard<std::mutex> lock((VM::FromJavaVM(vm)))->mtx);
-					*penv = (VM::FromJavaVM(vm)))->GetJNIEnv();
+				    std::lock_guard<std::mutex> lock((VM::FromJavaVM(vm))->mtx);
+					*penv = (VM::FromJavaVM(vm))->GetJNIEnv();
 				}
 #endif
 				return JNI_OK;
@@ -501,8 +501,8 @@ jnivm::VM::VM(bool skipInit, bool ReturnNull) : ninterface(ReturnNull ? GetNativ
 #ifdef EnableJNIVMGC
 					return vm->AttachCurrentThread((JNIEnv**)penv, nullptr);
 #else
-					std::lock_guard<std::mutex> lock((VM::FromJavaVM(vm)))->mtx);
-					*penv = (VM::FromJavaVM(vm)))->GetJNIEnv();
+                    std::lock_guard<std::mutex> lock((VM::FromJavaVM(vm))->mtx);
+                    *penv = (VM::FromJavaVM(vm))->GetJNIEnv();
 #endif
 				}
 				return JNI_OK;

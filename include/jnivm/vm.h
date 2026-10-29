@@ -3,6 +3,7 @@
 #include <memory>
 #include <mutex>
 #include <vector>
+#include <string>
 #include <unordered_map>
 #include <typeindex>
 #include <functional>
