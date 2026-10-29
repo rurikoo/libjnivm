@@ -1,10 +1,15 @@
-_: {
+{ ... }:
+{
   projectRootFile = "flake.nix";
 
   programs = {
     nixfmt.enable = true;
-    statix.enable = true;
-    deadnix.enable = true;
-    taplo.enable = true;
+    clang-format.enable = true;
+    cmake-format.enable = true;
   };
+
+  settings.global.excludes = [
+    "build/**"
+    "result*"
+  ];
 }
