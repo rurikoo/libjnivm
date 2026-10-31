@@ -3,10 +3,11 @@
 
 namespace jnivm {
 #ifdef __cpp_lib_void_t
-    template<typename... Ts>
-    using void_t = std::void_t<Ts...>;
+template <typename... Ts> using void_t = std::void_t<Ts...>;
 #else
-    template<typename... Ts> struct make_void { typedef void type;};
-    template<typename... Ts> using void_t = typename make_void<Ts...>::type;
+template <typename... Ts> struct make_void {
+  typedef void type;
+};
+template <typename... Ts> using void_t = typename make_void<Ts...>::type;
 #endif
-}
+} // namespace jnivm

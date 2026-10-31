@@ -2,8 +2,8 @@
 #include <jnivm/object.h>
 
 namespace jnivm {
-    class Throwable : public Object {
-    public:
-        std::exception_ptr except;
-    };
-}
+class Throwable : public Object {
+public:
+  std::exception_ptr except;
+};
+} // namespace jnivm

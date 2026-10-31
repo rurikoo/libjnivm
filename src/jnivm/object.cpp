@@ -3,9 +3,10 @@
 #include <jnivm/weak.h>
 
 std::shared_ptr<jnivm::Class> jnivm::Object::getClassInternal(jnivm::ENV *env) {
-    return clazz.lock();
+  return clazz.lock();
 }
 
-std::vector<std::shared_ptr<jnivm::Class>> jnivm::Object::GetBaseClasses(jnivm::ENV *env) {
-	return { nullptr };
+std::vector<std::shared_ptr<jnivm::Class>>
+jnivm::Object::GetBaseClasses(jnivm::ENV *env) {
+  return {nullptr};
 }

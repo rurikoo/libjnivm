@@ -1,8 +1,8 @@
 #pragma once
 namespace jnivm {
 
-    namespace impl {
+namespace impl {
 
-        template<class T, class...Y> class ArrayBase;
-    }
+template <class T, class... Y> class ArrayBase;
 }
+} // namespace jnivm
