@@ -1,4 +1,5 @@
-_: {
+_:
+{
   projectRootFile = "flake.nix";
 
   programs = {
@@ -10,5 +11,6 @@ _: {
   settings.global.excludes = [
     "build/**"
     "result*"
+    "treefmt.nix"
   ];
 }
